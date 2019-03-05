@@ -11,10 +11,11 @@ class SearchForm extends Component {
   }
 
   onTextInput = event => {
+    event.persist();
     this.setState((state, props) => ({ textInput: event.target.value }));
   }
 
-  onButtonClick = (event) => {
+  onButtonClick = event => {
     event.preventDefault();
     const { showDropdown } = this.state;
     const { type: elementType } = event.target;
