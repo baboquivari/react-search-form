@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Dropdown from './Dropdown';
+import CategoryDropdown from './CategoryDropdown';
 import Suggestions from './Suggestions';
 import categories from '../../data/categories';
 
@@ -10,19 +10,19 @@ class SearchForm extends Component {
     showDropdown: false
   }
 
-  onTextInput = event => {
+  handleInputChange = event => {
     event.persist();
-    this.setState((state, props) => ({ textInput: event.target.value }));
+    this.setState({ textInput: event.target.value });
   }
 
-  onButtonClick = event => {
+  handleButtonClick = event => {
     event.preventDefault();
     const { showDropdown } = this.state;
     const { type: elementType } = event.target;
 
-    this.setState((state, props) => ({
+    this.setState({
       showDropdown: elementType === 'text' && !showDropdown ? showDropdown : !showDropdown
-    }));
+    });
   }
 
   render () {
@@ -33,19 +33,19 @@ class SearchForm extends Component {
         <form>
           <input
             placeholder="Enter keyword"
-            onChange={this.onTextInput}
-            onClick={this.onButtonClick}
+            onChange={this.handleInputChange}
+            onClick={this.handleButtonClick}
             value={textInput}
           />
           <span>
             <button
-              onClick={this.onButtonClick}>
+              onClick={this.handleButtonClick}>
               in all categories..
             </button>
           </span>
         </form>
 
-        { showDropdown && <Dropdown /> }
+        { showDropdown && <CategoryDropdown /> }
         <Suggestions/>
       </div>
     );
@@ -57,3 +57,4 @@ class SearchForm extends Component {
 }
 
 export default SearchForm;
+

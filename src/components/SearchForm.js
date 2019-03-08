@@ -7,10 +7,13 @@ class SearchForm extends Component {
     return (
       <div>
         <CategorySearchBar/>
-        {/* <LocationSearchBar/> */}
+        <LocationSearchBar/>
       </div>
     );
   }
 }
+
+// TODO: Get some CSS to display these guys side by side.
+// TODO: React Forms - https://www.codementor.io/blizzerand/building-forms-using-react-everything-you-need-to-know-iz3eyoq4y
 
 export default SearchForm;

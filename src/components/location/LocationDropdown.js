@@ -54,7 +54,7 @@ const Item = styled.div`
 `
 
 
-const Dropdown = props => {
+const LocationDropdown = props => {
   return (
     <Container>
         <Heading>
@@ -90,9 +90,9 @@ const Dropdown = props => {
   );
 };
 
-Dropdown.propTypes = {};
+LocationDropdown.propTypes = {};
 
-export default Dropdown;
+export default LocationDropdown;
 
 // TODO: CSS
 // .container {
