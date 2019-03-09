@@ -4,6 +4,11 @@ import LocationSuggestions from './LocationSuggestions';
 import axios from 'axios';
 import jsonpAdapter from 'axios-jsonp';
 import { locationAPI } from '../../config';
+import styled from 'styled-components'
+
+const LocationSearch = styled.div`
+  margin-left: 20px;
+`
 
 class LocationSearchBar extends Component {
   state = {
@@ -40,13 +45,14 @@ class LocationSearchBar extends Component {
     });
   }
 
+  // export out?
   sanitiseData = data => data.filter(item => item !== "%s");
 
   render() {
     const { locations, textInput, showDropdown } = this.state;
 
     return (
-      <div>
+      <LocationSearch>
         <form onSubmit={this.handleFormSubmit}>
           <input
             placeholder="Location"
@@ -56,7 +62,7 @@ class LocationSearchBar extends Component {
           <LocationSuggestions locations={locations} />
           <Button/>
         </form>
-      </div>
+      </LocationSearch>
     );
   }
 }

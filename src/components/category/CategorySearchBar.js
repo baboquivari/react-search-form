@@ -2,6 +2,22 @@ import React, { Component } from 'react';
 import CategoryDropdown from './CategoryDropdown';
 import CategorySuggestions from './CategorySuggestions';
 import categories from '../../data/categories';
+import styled from 'styled-components'
+
+// rename
+const Search = styled.div`
+  margin-left: 30px;
+  width: 442px;
+`
+const EnterKeyword = styled.div`
+  display: flex;
+`
+const Input = styled.input`
+  border-radius: 5px;
+`
+const ShowDropdownButton = styled.div`
+
+`
 
 class SearchForm extends Component {
   state = {
@@ -28,25 +44,23 @@ class SearchForm extends Component {
     const { categories, textInput, showDropdown } = this.state;
 
     return (
-      <div>
-        <form>
-          <input
+      <Search>
+        <EnterKeyword>
+          <Input
             placeholder="Enter keyword"
             onChange={this.handleInputChange}
             onClick={this.handleButtonClick}
             value={textInput}
           />
-          <span>
-            <button
-              onClick={this.handleButtonClick}>
-              in all categories..
-            </button>
-          </span>
-        </form>
+          <ShowDropdownButton onClick={this.handleButtonClick}>
+              <p>in all categories</p>
+          </ShowDropdownButton>
+        </EnterKeyword>
 
         { showDropdown && <CategoryDropdown /> }
-        <CategorySuggestions/>
-      </div>
+
+        {/* <CategorySuggestions/> */}
+      </Search>
     );
   }
 

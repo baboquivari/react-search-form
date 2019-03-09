@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CategorySearchBar from './category/CategorySearchBar';
 import LocationSearchBar from './location/LocationSearchBar';
+import Header from './Header';
 import styled, { createGlobalStyle } from 'styled-components'
 import background from '../images/xing-bg-984x400.png';
 import sea from '../images/sea.jpg';
@@ -22,9 +23,19 @@ const GlobalStyle = createGlobalStyle`
 `
 
 const Container = styled.div`
-    background-image: url(${background});
-    width: 984px;
-    height: 400px;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  background-image: url(${background});
+  width: 984px;
+  height: 400px;
+`
+
+const Form = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  margin-top: 12px;
 `
 
 class SearchForm extends Component {
@@ -32,8 +43,11 @@ class SearchForm extends Component {
     return (
       <Container>
         <GlobalStyle />
-        <CategorySearchBar/>
-        <LocationSearchBar/>
+        <Header/>
+        <Form>
+          <CategorySearchBar/>
+          <LocationSearchBar/>
+        </Form>
       </Container>
     );
   }
