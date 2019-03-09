@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Button from './Button';
-import LocationDropdown from './LocationDropdown';
+import LocationSuggestions from './LocationSuggestions';
 import axios from 'axios';
 import jsonpAdapter from 'axios-jsonp';
 import { locationAPI } from '../../config';
@@ -13,9 +13,14 @@ class LocationSearchBar extends Component {
   }
 
   handleInputChange = event => {
-    event.persist();
     this.setState({ textInput: event.target.value }, () => {
-      this.getLocations(this.state.textInput)
+      const { textInput, locations } = this.state;
+
+      // if the input text is empty or matches an item in the locations array, don't fetch any data
+      if (!textInput || locations.includes(textInput)) return;
+
+      // TODO: add a debounce function here to limit over-calling?
+      this.getLocations(textInput)
     });
   }
 
@@ -29,32 +34,28 @@ class LocationSearchBar extends Component {
       url: `${locationAPI}${query}`,
       adapter: jsonpAdapter,
     })
-    .then((res) => {
-      console.log(res);
+    .then(data => {
+      const { data: locations } = data;
+      this.setState({ locations: this.sanitiseData(locations) })
     });
   }
 
-  render() {
-    // TODO: Read this https://reactjs.org/docs/forms.html#the-select-tag
+  sanitiseData = data => data.filter(item => item !== "%s");
 
-    const { showDropdown, textInput } = this.state;
+  render() {
+    const { locations, textInput, showDropdown } = this.state;
 
     return (
       <div>
         <form onSubmit={this.handleFormSubmit}>
           <input
             placeholder="Location"
+            list="locations"
             onChange={this.handleInputChange}
           />
-          <span>
-            <button
-              onClick={this.onButtonClick}>
-              Search
-            </button>
-          </span>
+          <LocationSuggestions locations={locations} />
+          <Button/>
         </form>
-
-        { showDropdown && <LocationDropdown /> }
       </div>
     );
   }

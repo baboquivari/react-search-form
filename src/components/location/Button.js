@@ -2,9 +2,11 @@ import React from 'react';
 
 const Button = props => {
   return (
-    <div>
-        <button> Search </button>
-    </div>
+    <span>
+      <button>
+        Search
+      </button>
+    </span>
   );
 };
 

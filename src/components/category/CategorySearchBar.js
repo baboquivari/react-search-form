@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import CategoryDropdown from './CategoryDropdown';
-import Suggestions from './Suggestions';
+import CategorySuggestions from './CategorySuggestions';
 import categories from '../../data/categories';
 
 class SearchForm extends Component {
@@ -11,7 +11,6 @@ class SearchForm extends Component {
   }
 
   handleInputChange = event => {
-    event.persist();
     this.setState({ textInput: event.target.value });
   }
 
@@ -46,7 +45,7 @@ class SearchForm extends Component {
         </form>
 
         { showDropdown && <CategoryDropdown /> }
-        <Suggestions/>
+        <CategorySuggestions/>
       </div>
     );
   }
