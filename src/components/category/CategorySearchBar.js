@@ -5,23 +5,35 @@ import categories from '../../data/categories';
 import styled from 'styled-components'
 
 // rename
-const Search = styled.div`
+const SearchBar = styled.div`
   margin-left: 30px;
   width: 442px;
-`
-const EnterKeyword = styled.div`
   display: flex;
+  position: relative;
+`
+const EnterKeywordSearchField = styled.div`
+  display: flex;
+  flex-grow: 1;
 `
 const Input = styled.input`
-  border-radius: 5px;
+  flex-grow: 1;
+  font-size: 10px;
+    border: none;
+    border-radius: 5px 0 0 5px;
 `
-const ShowDropdownButton = styled.div`
-
+const InAllCategoriesButton = styled.div`
+    flex-grow: 1;
+    /* color: white; */
+    background-color: white;
+    border-radius: 0px 5px 5px 0;
+    cursor: pointer;
+    background-color: #EBEBEB;
 `
 
 class SearchForm extends Component {
   state = {
     categories: categories,
+    selectedCategories: [],
     textInput: '',
     showDropdown: false
   }
@@ -31,7 +43,6 @@ class SearchForm extends Component {
   }
 
   handleButtonClick = event => {
-    event.preventDefault();
     const { showDropdown } = this.state;
     const { type: elementType } = event.target;
 
@@ -40,27 +51,44 @@ class SearchForm extends Component {
     });
   }
 
+  handleCheckboxSelect = (category, event) => {
+    const { selectedCategories } = this.state;
+    const { checked } = event.target;
+
+    this.setState({
+      selectedCategories:
+        checked ?
+        [...selectedCategories, category] :
+        selectedCategories.filter(item => item !== category)
+    })
+  }
+
   render () {
     const { categories, textInput, showDropdown } = this.state;
 
     return (
-      <Search>
-        <EnterKeyword>
+      <SearchBar>
+        <EnterKeywordSearchField>
           <Input
             placeholder="Enter keyword"
             onChange={this.handleInputChange}
             onClick={this.handleButtonClick}
-            value={textInput}
-          />
-          <ShowDropdownButton onClick={this.handleButtonClick}>
-              <p>in all categories</p>
-          </ShowDropdownButton>
-        </EnterKeyword>
+            value={textInput}>
+          </Input>
+        </EnterKeywordSearchField>
 
-        { showDropdown && <CategoryDropdown /> }
+        <InAllCategoriesButton onClick={this.handleButtonClick}>
+            <p>in all categories</p>
+        </InAllCategoriesButton>
+
+        { showDropdown &&
+          <CategoryDropdown
+            categories={categories}
+            handleCheckboxSelect={this.handleCheckboxSelect}
+          /> }
 
         {/* <CategorySuggestions/> */}
-      </Search>
+      </SearchBar>
     );
   }
 

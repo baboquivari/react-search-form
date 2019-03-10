@@ -7,6 +7,8 @@ import background from '../images/xing-bg-984x400.png';
 import sea from '../images/sea.jpg';
 
 const GlobalStyle = createGlobalStyle`
+  @import url(//fonts.googleapis.com/css?family=Open+Sans);
+
   /* Removes default rendered arrow on <datalist> elements */
   input::-webkit-calendar-picker-indicator {
 	  display: none;
@@ -14,11 +16,12 @@ const GlobalStyle = createGlobalStyle`
 
   html, body {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    /* justify-content: center; */
+    /* align-items: center; */
     width: 100%;
-    height: 100vh;
+    /* height: 100vh; */
     background-image: url(${sea});
+    font-family: 'Open Sans', sans-serif;
   }
 `
 
@@ -33,6 +36,7 @@ const Container = styled.div`
 
 const Form = styled.div`
   display: flex;
+  height: 44px;
   width: 100%;
   justify-content: flex-start;
   margin-top: 12px;

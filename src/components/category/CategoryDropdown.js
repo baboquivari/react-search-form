@@ -8,19 +8,21 @@ const Container = styled.div`
   flex-direction: column;
   height: 450px;
   width: 450px;
-  border: solid #cbcbcb 3px;
   border-radius: 5px;
+  position: absolute;
+  margin-top: 44px;
+  width: 100%;
+  background-color: white;
+  user-select: none;
 `
 const Heading = styled.div`
   display: flex;
   justify-content: space-between;
-  border: solid blue 1px;
   flex: 0 1 auto;
 `
 const Categories = styled.div`
   display: flex;
   flex: 2 0;
-  border: solid green 1px;
 `
 const CategoriesScroll = styled.div`
   display: flex;
@@ -50,42 +52,56 @@ const OtherCategory = styled.div`
 `
 const Item = styled.div`
   width: 50%;
-  border: solid olivedrab 1px;
+`
+const Button = styled.a`
+  color: #4D9092;
+  cursor: pointer;
+`
+const CategoriesGrid = styled.div`
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: auto auto auto auto auto auto auto auto;
+  font-size: 12px;
+`
+const Category = styled.div`
+  border: solid pink 1px;
+  height: 50px;
+`
+const Detail = styled.p`
+  display: inline;
+`
+const CheckBox = styled.input`
 `
 
-
 const CategoryDropdown = props => {
+  const { categories, handleCheckboxSelect } = props;
+
+  const createCategories = type => {
+    return categories.map((category, i) => {
+        return category.type === type && (
+          <Category key={i}>
+            <CheckBox type="checkbox" onChange={handleCheckboxSelect.bind(null, category.name)}/>
+            <Detail>{category.name} ({category.value})</Detail>
+          </Category>
+        )
+    })
+  }
+
   return (
     <Container>
         <Heading>
             <HeadingText>Top Categories</HeadingText>
-            <button>Search in all Categories</button>
+            <Button>Search in all Categories</Button>
         </Heading>
-        <Categories>
-            <Column>
-                <ColumnItem>Stuff</ColumnItem>
-                <ColumnItem>Stuff</ColumnItem>
-                <ColumnItem>Stuff</ColumnItem>
-                <ColumnItem>Stuff</ColumnItem>
-            </Column>
-            <Column>
-                <ColumnItem>Stuff</ColumnItem>
-                <ColumnItem>Stuff</ColumnItem>
-                <ColumnItem>Stuff</ColumnItem>
-                <ColumnItem>Stuff</ColumnItem>
-            </Column>
-        </Categories>
+        <CategoriesGrid>
+          { createCategories('top') }
+        </CategoriesGrid>
         <Heading>
             <HeadingText>More Categories</HeadingText>
         </Heading>
-        <CategoriesScroll>
-            <OtherCategory>
-                <Item>Thing</Item>
-                <Item>Thing</Item>
-                <Item>Thing</Item>
-                <Item>Thing</Item>
-            </OtherCategory>
-        </CategoriesScroll>
+        <CategoriesGrid>
+          { createCategories('more') }
+        </CategoriesGrid>
     </Container>
   );
 };

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Button from './Button';
 import LocationSuggestions from './LocationSuggestions';
 import axios from 'axios';
 import jsonpAdapter from 'axios-jsonp';
@@ -7,7 +6,27 @@ import { locationAPI } from '../../config';
 import styled from 'styled-components'
 
 const LocationSearch = styled.div`
+  display: flex;
   margin-left: 20px;
+  width: 400px;
+`
+const Form = styled.form`
+  display: flex;
+  flex-grow: 2;
+    font-size: 10px;
+`
+const Input = styled.input`
+  display: flex;
+  margin-right: 20px;
+    width: 100%;
+    font-size: 10px;
+    border-radius: 5px;
+`
+const Button = styled.button`
+  flex-grow: 1;
+    background-color: #D9E149;
+    border-radius: 5px;
+    cursor: pointer;
 `
 
 class LocationSearchBar extends Component {
@@ -53,15 +72,15 @@ class LocationSearchBar extends Component {
 
     return (
       <LocationSearch>
-        <form onSubmit={this.handleFormSubmit}>
-          <input
+        <Form onSubmit={this.handleFormSubmit}>
+          <Input
             placeholder="Location"
             list="locations"
-            onChange={this.handleInputChange}
-          />
+            onChange={this.handleInputChange}>
+          </Input>
           <LocationSuggestions locations={locations} />
-          <Button/>
-        </form>
+        </Form>
+        <Button onClick={this.handleFormSubmit}>Search</Button>
       </LocationSearch>
     );
   }
