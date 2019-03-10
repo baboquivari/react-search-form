@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import CategoryDropdown from './CategoryDropdown';
-import CategorySuggestions from './CategorySuggestions';
 import categories from '../../data/categories';
 import styled from 'styled-components'
+import { FontAwesomeIcon as Icon } from '@fortawesome/react-fontawesome'
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
 
 // rename
 const SearchBar = styled.div`
@@ -10,24 +11,31 @@ const SearchBar = styled.div`
   width: 442px;
   display: flex;
   position: relative;
-`
+  `
 const EnterKeywordSearchField = styled.div`
   display: flex;
-  flex-grow: 1;
-`
+  flex: 1 1 0;
+  `
 const Input = styled.input`
-  flex-grow: 1;
-  font-size: 10px;
+    flex-grow: 1;
+    font-size: 15px;
     border: none;
     border-radius: 5px 0 0 5px;
+    padding-left: 12px;
+    /* width: 50%; */
+    /* flex: 1 1 0; */
 `
 const InAllCategoriesButton = styled.div`
-    flex-grow: 1;
-    /* color: white; */
+    flex: 1 1 0;
     background-color: white;
     border-radius: 0px 5px 5px 0;
     cursor: pointer;
     background-color: #EBEBEB;
+`
+const Text = styled.p`
+  margin: 0;
+  font-size: 15px;
+  padding: 11px;
 `
 
 class SearchForm extends Component {
@@ -35,7 +43,8 @@ class SearchForm extends Component {
     categories: categories,
     selectedCategories: [],
     textInput: '',
-    showDropdown: false
+    showDropdown: false,
+    conditionalText: "in all categories"
   }
 
   handleInputChange = event => {
@@ -55,16 +64,41 @@ class SearchForm extends Component {
     const { selectedCategories } = this.state;
     const { checked } = event.target;
 
-    this.setState({
-      selectedCategories:
-        checked ?
-        [...selectedCategories, category] :
-        selectedCategories.filter(item => item !== category)
-    })
+    this.setState(
+      {
+        selectedCategories:
+          checked ?
+          [...selectedCategories, category] :
+          selectedCategories.filter(item => item !== category)
+      },
+      () => this.setConditionalText()
+    )
+  }
+
+  setConditionalText = () => {
+    const { selectedCategories } = this.state;
+    console.log(selectedCategories);
+
+    switch (selectedCategories) {
+      case selectedCategories.length === 1:
+        this.setState({ conditionalText: `in ${selectedCategories[0]}` });
+        break;
+      case selectedCategories.length > 1:
+        this.setState({ conditionalText: "in multiple categories" });
+        break;
+      default:
+        this.setState({ conditionalText: "in all categories" });
+    }
   }
 
   render () {
-    const { categories, textInput, showDropdown } = this.state;
+    const {
+      categories,
+      selectedCategories,
+      textInput,
+      showDropdown,
+      conditionalText
+    } = this.state;
 
     return (
       <SearchBar>
@@ -78,7 +112,7 @@ class SearchForm extends Component {
         </EnterKeywordSearchField>
 
         <InAllCategoriesButton onClick={this.handleButtonClick}>
-            <p>in all categories</p>
+            <Text>{conditionalText}<Icon icon={faCaretDown} style={{marginLeft: "80px"}}/></Text>
         </InAllCategoriesButton>
 
         { showDropdown &&
@@ -86,8 +120,6 @@ class SearchForm extends Component {
             categories={categories}
             handleCheckboxSelect={this.handleCheckboxSelect}
           /> }
-
-        {/* <CategorySuggestions/> */}
       </SearchBar>
     );
   }

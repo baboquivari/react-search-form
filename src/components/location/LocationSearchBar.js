@@ -7,26 +7,30 @@ import styled from 'styled-components'
 
 const LocationSearch = styled.div`
   display: flex;
-  margin-left: 20px;
+  margin-left: 15px;
   width: 400px;
+  flex: 1 1 0;
 `
 const Form = styled.form`
   display: flex;
-  flex-grow: 2;
+  flex-grow: 1;
     font-size: 10px;
 `
 const Input = styled.input`
   display: flex;
-  margin-right: 20px;
+  margin-right: 15px;
     width: 100%;
-    font-size: 10px;
+    font-size: 15px;
     border-radius: 5px;
+    padding-left: 12px;
 `
 const Button = styled.button`
-  flex-grow: 1;
+    flex-grow: 0.3;
+    font-size: 15px;
     background-color: #D9E149;
     border-radius: 5px;
     cursor: pointer;
+    margin-right: 92px;
 `
 
 class LocationSearchBar extends Component {

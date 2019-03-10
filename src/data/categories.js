@@ -13,6 +13,10 @@ const categories = [
     { name: 'Administration', type: 'more', value: 1439 },
     { name: 'Marketing & Advertising', type: 'more', value: 1304 },
     { name: 'Training / Instruction', type: 'more', value: 547 },
+    { name: 'Aerospace Engineering', type: 'more', value: 1 },
+    { name: 'Video Game Development', type: 'more', value: 500 },
+    { name: 'Human Resources', type: 'more', value: 6304 },
+    { name: 'Sheep Herding', type: 'more', value: 247 }
 ]
 
 export default categories;

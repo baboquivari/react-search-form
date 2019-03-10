@@ -6,9 +6,9 @@ import styled from 'styled-components';
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  height: 450px;
+  /* height: 450px; */
   width: 450px;
-  border-radius: 5px;
+  border-radius: 5px 5px 5px 5px;
   position: absolute;
   margin-top: 44px;
   width: 100%;
@@ -37,13 +37,10 @@ const HeadingText = styled.p`
 const Column = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
-  border: solid pink 1px;
   flex: 1 0;
 `
 const ColumnItem = styled.div`
   margin: 0;
-  border: dashed orange 1px;
 `
 const OtherCategory = styled.div`
   display: flex;
@@ -56,21 +53,62 @@ const Item = styled.div`
 const Button = styled.a`
   color: #4D9092;
   cursor: pointer;
+  font-size: 15px;
+  padding-right: 12px;
+  padding-top: 10px;
 `
 const CategoriesGrid = styled.div`
   display: grid;
   grid-template-columns: 50% 50%;
   grid-template-rows: auto auto auto auto auto auto auto auto;
   font-size: 12px;
+  padding-left: 10px;
+  padding-top: 10px;
+  border-bottom: 1px solid grey;
 `
 const Category = styled.div`
-  border: solid pink 1px;
+  height: 42px;
+  padding-top: 7px;
+`
+const MoreCategories = styled.div`
   height: 50px;
+  grid-column: 1 / span 2;
+  padding-top: 10px;
+  border-bottom: 1px solid grey;
+  height: 35px;
 `
 const Detail = styled.p`
   display: inline;
+  /* font-size: 15px; */
 `
 const CheckBox = styled.input`
+  margin-right: 6px;
+`
+const MoreCategoriesGrid = styled.div`
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: auto auto auto auto auto auto auto auto auto auto;
+  font-size: 12px;
+  overflow-y: auto;
+  height: 145px;
+  padding-left: 10px;
+  padding-top: 10px;
+`
+const TopCategories = styled.div`
+display: flex;
+  justify-content: space-around;
+  height: 40px;
+  grid-column: 1 / span 2;
+  border-bottom: 1px solid grey;
+`
+const Text = styled.p`
+  display: inline;
+  flex-grow: 1;
+  padding-left: 12px;
+  font-weight: bold;
+  margin-bottom: 3px;
+  margin: 0;
+    padding-top: 10px;
 `
 
 const CategoryDropdown = props => {
@@ -89,75 +127,24 @@ const CategoryDropdown = props => {
 
   return (
     <Container>
-        <Heading>
-            <HeadingText>Top Categories</HeadingText>
-            <Button>Search in all Categories</Button>
-        </Heading>
+        <TopCategories>
+          <Text>Top Categories</Text>
+          <Button>Search in all categories</Button>
+        </TopCategories>
         <CategoriesGrid>
           { createCategories('top') }
         </CategoriesGrid>
-        <Heading>
-            <HeadingText>More Categories</HeadingText>
-        </Heading>
-        <CategoriesGrid>
-          { createCategories('more') }
-        </CategoriesGrid>
+
+        <MoreCategories><Text>More Categories</Text></MoreCategories>
+        <MoreCategoriesGrid>
+            { createCategories('more') }
+        </MoreCategoriesGrid>
     </Container>
   );
 };
+{/* <Button>Search in all categories</Button> */}
 
 CategoryDropdown.propTypes = {};
 
 export default CategoryDropdown;
 
-// TODO: CSS
-// .container {
-//   display: flex;
-//   flex-direction: column;
-//   height: 450px;
-//   width: 450px;
-//   border: solid #cbcbcb 3px;
-//   border-radius: 5px;
-// }
-// .heading {
-//   display: flex;
-//   justify-content: space-between;
-//   border: solid blue 1px;
-//   flex: 0 1 auto;
-// }
-// .categories {
-//   display: flex;
-
-//   flex: 2 0;
-//   border: solid green 1px;
-// }
-// .heading-text {
-  // margin: 8px;
-  // border: solid gold 1px;
-// }
-// .col {
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: space-evenly;
-  // border: solid pink 1px;
-  // flex: 1 0;
-// }
-// .col-item {
-  // margin: 0;
-  // border: dashed orange 1px;
-// }
-// .scroll {
-  // display: flex;
-  // flex-direction: row;
-  // flex-wrap: wrap;
-  // overflow-y: scroll;
-// }
-// .other-category {
-  // display: flex;
-  // flex-wrap: wrap;
-  // height: 50px;
-// }
-// .item {
-  // width: 50%;
-  // border: solid olivedrab 1px;
-// }
