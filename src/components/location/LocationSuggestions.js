@@ -17,20 +17,40 @@ const Locations = styled.ul`
 
 `
 const Location = styled.li`
-  background-color: ${props => props.selectedIndex ? "#EBEBEB" : "white"};
+  background-color: ${props => props.keyboardSelectedIndex || props.mouseSelectedIndex ? "#EBEBEB" : "white"};
   border-radius: 5px;
-    padding-left: 12px;
-    padding-top: 7px;
-    height: 33px;
-    font-size: 15px;
+  padding-left: 12px;
+  padding-top: 7px;
+  height: 33px;
+  font-size: 15px;
+  cursor: pointer;
 `
 
 const LocationSuggestions = props => {
-  const { locations, handleLocationClick, selectedIndex } = props;
-    { return locations.length > 0 && <Locations>
+  const {
+    locations,
+    handleLocationClick,
+    keyboardSelectedIndex,
+    mouseSelectedIndex,
+    handleMouseEnter,
+    handleMouseLeave,
+    textInput
+  } = props;
+
+    { return locations.length > 0 && !locations.includes(textInput) && <Locations>
       { locations.map((location, i) => {
         return (
-          <Location selectedIndex={selectedIndex === i} key={i} onClick={handleLocationClick}>{location}</Location>
+          <Location
+            keyboardSelectedIndex={keyboardSelectedIndex === i}
+            key={i}
+            onClick={handleLocationClick}
+            onMouseEnter={handleMouseEnter.bind(null, i)}
+            onMouseMove={handleMouseEnter.bind(null, i)}
+            onMouseLeave={handleMouseLeave}
+            mouseSelectedIndex={mouseSelectedIndex === i}
+            >
+            {location}
+          </Location>
         )
       })}
     </Locations> }

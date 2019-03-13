@@ -55,8 +55,11 @@ class SearchForm extends Component {
     const { showDropdown } = this.state;
     const { type: elementType } = event.target;
 
+
+    console.log(elementType)
+
     this.setState({
-      showDropdown: elementType === 'text' && !showDropdown ? showDropdown : !showDropdown
+      showDropdown: elementType === 'text' ? showDropdown : !showDropdown
     });
   }
 
@@ -88,8 +91,10 @@ class SearchForm extends Component {
         break;
       default:
         this.setState({ conditionalText: "in all categories" });
+      }
     }
-  }
+
+  handleMouseLeave = () => this.setState({ showDropdown: false })
 
   render () {
     const {
@@ -101,7 +106,7 @@ class SearchForm extends Component {
     } = this.state;
 
     return (
-      <SearchBar>
+      <SearchBar onMouseLeave={this.handleMouseLeave}>
         <EnterKeywordSearchField>
           <Input
             placeholder="Enter keyword"
