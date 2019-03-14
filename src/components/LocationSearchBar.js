@@ -74,8 +74,8 @@ class LocationSearchBar extends Component {
       })
     }
 
-    // if the user has selected something and then presses enter, submit the form
-    if (event.keyCode === 13 && locations.includes(textInput)) {
+    // if the user has selected a suggested location or has typed in a custom one, submit the form
+    if (event.keyCode === 13 && locations.includes(textInput) || event.keyCode === 13 && textInput) {
       return this.handleFormSubmit();
     }
 

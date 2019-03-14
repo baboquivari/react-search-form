@@ -18,8 +18,9 @@ class SearchForm extends Component {
   state = {
     categories: categories,
     selectedCategories: [],
+    allSelected: false,
     textInput: '',
-    showDropdown: false
+    showDropdown: false,
   }
 
   handleInputChange = event => {
@@ -48,7 +49,12 @@ class SearchForm extends Component {
     this.setState({ selectedCategories: addOrRemoveCategory() })
   }
 
-  handleMouseLeave = () => this.setState({ showDropdown: false, selectedCategories: [] })
+  handleMouseLeave = () => this.setState({ showDropdown: false })
+
+  handleSelectAllCategories = () => {
+    const { selectedCategories, categories, allSelected } = this.state;
+    this.setState({ selectedCategories: allSelected ? [] : categories, allSelected: !allSelected})
+  }
 
   render () {
     const {
@@ -57,12 +63,14 @@ class SearchForm extends Component {
         selectedCategories,
         textInput,
         showDropdown,
-        conditionalText
+        conditionalText,
+        allSelected
       },
       handleMouseLeave,
       handleInputChange,
       handleButtonClick,
-      handleCheckboxSelect
+      handleCheckboxSelect,
+      handleSelectAllCategories
     } = this;
 
     return (
@@ -86,8 +94,11 @@ class SearchForm extends Component {
         { showDropdown &&
           <CategoryDropdown
             categories={categories}
+            selectedCategories={selectedCategories}
+            allSelected={allSelected}
             handleCheckboxSelect={handleCheckboxSelect}
             handleButtonClick={handleButtonClick}
+            handleSelectAllCategories={handleSelectAllCategories}
           /> }
       </SearchBar>
     );

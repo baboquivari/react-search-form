@@ -23,16 +23,19 @@ import {
 } from '../css/category';
 
 const CategoryDropdown = props => {
-  const { categories, handleCheckboxSelect, handleButtonClick } = props;
+  const { categories, selectedCategories, allSelected, handleCheckboxSelect, handleButtonClick, handleSelectAllCategories } = props;
 
-  const createCategories = type => {
+  const createCategories = (type, allSelected) => {
     return categories.map((category, i) => {
-        return category.type === type && (
+        return category.type === type &&
           <Category key={i}>
-            <CheckBox type="checkbox" onChange={handleCheckboxSelect.bind(null, category.name)}/>
+            <CheckBox
+              checked={selectedCategories.includes(category.name) ? true : allSelected}
+              type="checkbox"
+              onChange={handleCheckboxSelect.bind(null, category.name)}
+            />
             <Detail>{category.name} ({category.value})</Detail>
           </Category>
-        )
     })
   }
 
@@ -40,10 +43,10 @@ const CategoryDropdown = props => {
     <Container>
         <TopCategories>
           <Text>Top Categories</Text>
-          <Button onClick={handleButtonClick}>Search in all categories</Button>
+          <Button onClick={handleSelectAllCategories}>Search in all categories</Button>
         </TopCategories>
         <CategoriesGrid>
-          { createCategories('top') }
+          { createCategories('top', allSelected) }
         </CategoriesGrid>
 
         <MoreCategories><Text>More Categories</Text></MoreCategories>
@@ -55,4 +58,3 @@ const CategoryDropdown = props => {
 };
 
 export default CategoryDropdown;
-
