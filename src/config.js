@@ -1,1 +1,1 @@
-export const locationAPI = 'http://gd.geobytes.com/AutoCompleteCity?filter=DE&q=';
+export const locationAPI = 'gd.geobytes.com/AutoCompleteCity?filter=DE&q=';

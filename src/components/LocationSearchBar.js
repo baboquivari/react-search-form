@@ -98,7 +98,7 @@ class LocationSearchBar extends Component {
 
   getLocations = query => {
     axios({
-      url: `${locationAPI}${query}`,
+      url: `https://crossorigin.me/${locationAPI}${query}`,
       adapter: jsonpAdapter,
     })
     .then(data => {
