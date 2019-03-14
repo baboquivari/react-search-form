@@ -1,5 +1,6 @@
 # XING Coding Challenge
 
+
 ### How to run the app
 
 1) In the terminal, clone this repo to your local machine:
@@ -8,25 +9,31 @@
 git clone https://github.com/baboquivari/xing-coding-challenge.git
 ```
 
-2) Make sure you're in the root of the project folder, then install dependencies:
+2) Change directory so you're in the project root folder:
+
+```javascript
+cd xing-coding-challenge
+```
+
+2) Install dependencies:
 
 ```javascript
 npm install
 ```
 
-3) Start the app, which should open a new browser window:
+4) Start the app, which should open a new browser window:
 
 ```javascript
 npm start
 ```
 
-1) If your browser doesn't open automatically, navigate to the following URL:
+5) If your browser doesn't open automatically, navigate to the following URL:
 
 ```javascript
 localhost:3000
 ```
 
-5) Mess around with it! :)
+6) Mess around with it! :)
 
 ------------------
 
