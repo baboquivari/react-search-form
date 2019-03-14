@@ -3,11 +3,9 @@ import LocationSuggestions from './LocationSuggestions';
 import axios from 'axios';
 import jsonpAdapter from 'axios-jsonp';
 import { locationAPI } from '../config';
-import { text } from '@fortawesome/fontawesome-svg-core';
 
 // CSS
 import {
-  Form,
   LocationSearch,
   Input,
   Button
@@ -31,7 +29,7 @@ class LocationSearchBar extends Component {
     if (this.element.contains(event.target)) return;
 
     // otherwise, close location suggestions
-    this.setState({ locations: [], textInput: '' })
+    this.setState({ locations: [] })
   }
 
   // handles enter, up, down and tab key presses
@@ -67,15 +65,16 @@ class LocationSearchBar extends Component {
     if (event.keyCode === 38 || event.keyCode === 40) event.preventDefault();
 
     // if user presses enter or tab on a dropdown selection, populate the input field with it
-    if (event.keyCode === 13 || event.keyCode === 9 && keyboardSelectedIndex !== null) {
+    if ((event.keyCode === 13 || event.keyCode === 9) && keyboardSelectedIndex !== null) {
       this.setState({
         textInput: locations[keyboardSelectedIndex],
         keyboardSelectedIndex: null
       })
     }
 
-    // if the user has selected a suggested location or has typed in a custom one, submit the form
-    if (event.keyCode === 13 && locations.includes(textInput) || event.keyCode === 13 && textInput) {
+    // if the user has selected a suggested location or has typed in a custom one, submit the form on enter key press
+    if ((event.keyCode === 13 && locations.includes(textInput)) ||
+        (event.keyCode === 13 && textInput && keyboardSelectedIndex === null && mouseSelectedIndex === null)) {
       return this.handleFormSubmit();
     }
 
