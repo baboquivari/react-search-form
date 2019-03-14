@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 
 // CSS
 import { Heading, Text } from '../css/header';

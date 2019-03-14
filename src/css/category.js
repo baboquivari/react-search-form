@@ -48,49 +48,6 @@ export const Container = styled.div`
   user-select: none;
 `
 
-export const Heading = styled.div`
-  display: flex;
-  justify-content: space-between;
-  flex: 0 1 auto;
-`
-
-export const Categories = styled.div`
-  display: flex;
-  flex: 2 0;
-`
-
-export const CategoriesScroll = styled.div`
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  overflow-y: scroll;
-`
-
-export const HeadingText = styled.p`
-  margin: 8px;
-  border: solid gold 1px;
-`
-
-export const Column = styled.div`
-  display: flex;
-  flex-direction: column;
-  flex: 1 0;
-`
-
-export const ColumnItem = styled.div`
-  margin: 0;
-`
-
-export const OtherCategory = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  height: 50px;
-`
-
-export const Item = styled.div`
-  width: 50%;
-`
-
 export const Button = styled.a`
   color: #4D9092;
   cursor: pointer;

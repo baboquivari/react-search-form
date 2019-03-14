@@ -3,14 +3,6 @@ import React from 'react';
 // CSS
 import {
   Container,
-  Heading,
-  Categories,
-  CategoriesScroll,
-  HeadingText,
-  Column,
-  ColumnItem,
-  OtherCategory,
-  Item,
   Button,
   CategoriesGrid,
   Category,
@@ -23,7 +15,7 @@ import {
 } from '../css/category';
 
 const CategoryDropdown = props => {
-  const { categories, selectedCategories, allSelected, handleCheckboxSelect, handleButtonClick, handleSelectAllCategories } = props;
+  const { categories, selectedCategories, allSelected, handleCheckboxSelect, handleSelectAllCategories } = props;
 
   const createCategories = (type, allSelected) => {
     return categories.map((category, i) => {
@@ -51,7 +43,7 @@ const CategoryDropdown = props => {
 
         <MoreCategories><Text>More Categories</Text></MoreCategories>
         <MoreCategoriesGrid>
-            { createCategories('more') }
+            { createCategories('more', allSelected) }
         </MoreCategoriesGrid>
     </Container>
   );

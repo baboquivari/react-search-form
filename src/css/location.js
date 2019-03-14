@@ -7,12 +7,6 @@ export const LocationSearch = styled.div`
   flex: 1 1 0;
 `
 
-export const Form = styled.form`
-  display: flex;
-  flex-grow: 1;
-  font-size: 10px;
-`
-
 export const Input = styled.input`
   display: flex;
   margin-right: 15px;
