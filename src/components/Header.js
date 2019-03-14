@@ -1,23 +1,16 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const HeaderStyles = styled.header`
-  color: #FFFFFF;
-  margin-left: 30px;
-  margin-top: 50px;
-`
-const Heading = styled.h1`
-  line-height: 22px;
-`
-const Header = props => {
+// CSS
+import { Heading, Text } from '../css/header';
+
+const Header = () => {
   return (
-    <HeaderStyles>
-        <Heading>For a better working life</Heading>
-        <Heading>The new XING Jobs</Heading>
-    </HeaderStyles>
+    <Heading>
+        <Text>For a better working life</Text>
+        <Text>The new XING Jobs</Text>
+    </Heading>
   );
 };
-
-Header.propTypes = {};
 
 export default Header;

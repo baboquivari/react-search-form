@@ -37,7 +37,8 @@ const LocationSuggestions = props => {
     textInput
   } = props;
 
-    { return locations.length > 0 && !locations.includes(textInput) && <Locations>
+    return textInput.length > 2 && locations.length > 0 && !locations.includes(textInput) &&
+    <Locations>
       { locations.map((location, i) => {
         return (
           <Location
@@ -53,9 +54,7 @@ const LocationSuggestions = props => {
           </Location>
         )
       })}
-    </Locations> }
+    </Locations>
 };
-
-LocationSuggestions.propTypes = {};
 
 export default LocationSuggestions;
